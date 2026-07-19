@@ -36,11 +36,12 @@ export default function ProfileHero({ profile }) {
                     <div className="profile-hero__avatar-wrapper">
                         <div className="profile-hero__avatar-border">
                             <Image
-                                src={profile.profilePhoto}
+                                src={profile.profilePhoto || "/images/default-avatar.png"}
                                 alt={`${profile.fullName}'s profile photo`}
                                 width={152}
                                 height={152}
                                 priority
+                                unoptimized
                                 className="profile-hero__avatar"
                             />
                         </div>

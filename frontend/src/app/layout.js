@@ -1,4 +1,3 @@
-import Script from "next/script";
 import "./globals.css";
 
 export const metadata = {
@@ -7,34 +6,33 @@ export const metadata = {
 };
 
 const initialThemeScript = `
-(() => {
-  try {
-    const theme = localStorage.getItem("all-in-theme");
+  (() => {
+    try {
+      const savedTheme = localStorage.getItem("all-in-theme");
 
-    if (theme === "light" || theme === "dark") {
-      document.documentElement.setAttribute("data-theme", theme);
-    } else {
+      if (savedTheme === "light" || savedTheme === "dark") {
+        document.documentElement.setAttribute("data-theme", savedTheme);
+      } else {
+        document.documentElement.removeAttribute("data-theme");
+      }
+    } catch {
       document.documentElement.removeAttribute("data-theme");
     }
-  } catch (e) {
-    document.documentElement.removeAttribute("data-theme");
-  }
-})();
+  })();
 `;
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body>
-        <Script
-          id="theme-init"
-          strategy="beforeInteractive"
-        >
-          {initialThemeScript}
-        </Script>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: initialThemeScript,
+          }}
+        />
+      </head>
 
-        {children}
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

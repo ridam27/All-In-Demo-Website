@@ -1,19 +1,17 @@
 import { notFound } from "next/navigation";
 
-import ProfileHero from "@/components/ProfileHero/ProfileHero";
 import ActionButtons from "@/components/ActionButtons/ActionButtons";
-import SocialLinks from "@/components/SocialLinks/SocialLinks";
+import ProfileHero from "@/components/ProfileHero/ProfileHero";
 import SaveContact from "@/components/SaveContact/SaveContact";
-
-import { profiles } from "@/data/profiles";
+import SocialLinks from "@/components/SocialLinks/SocialLinks";
+import { getProfile } from "@/services/profileService";
 
 import "./profile.css";
 
 export default async function ProfilePage({ params }) {
     const { username } = await params;
 
-    const normalizedUsername = username?.trim().toLowerCase();
-    const profile = profiles[normalizedUsername];
+    const profile = await getProfile(username);
 
     if (!profile) {
         notFound();
@@ -38,7 +36,6 @@ export default async function ProfilePage({ params }) {
 
                     <footer className="profile-footer">
                         <div className="profile-footer__brand">
-
                             <img
                                 src="/brand/logo-light.svg"
                                 alt="All In Cards"
@@ -50,7 +47,6 @@ export default async function ProfilePage({ params }) {
                                 alt="All In Cards"
                                 className="profile-footer__logo profile-footer__logo--dark"
                             />
-
                         </div>
 
                         <div className="profile-footer__tagline">
@@ -58,7 +54,10 @@ export default async function ProfilePage({ params }) {
                             <strong>One identity.</strong>
                         </div>
 
-                        <span className="profile-footer__accent" />
+                        <span
+                            className="profile-footer__accent"
+                            aria-hidden="true"
+                        />
                     </footer>
                 </div>
             </article>
