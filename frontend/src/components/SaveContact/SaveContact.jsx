@@ -1,12 +1,15 @@
 import { FaAddressCard } from "react-icons/fa";
 
+import { getContactDownloadUrl } from "@/services/profileService";
+
 import "./SaveContact.css";
 
 export default function SaveContact({ username, fullName }) {
+    const contactUrl = getContactDownloadUrl(username);
+
     return (
         <a
-            href={`/contacts/${username}.vcf`}
-            download
+            href={contactUrl}
             className="save-contact"
             aria-label={`Save ${fullName} to contacts`}
         >

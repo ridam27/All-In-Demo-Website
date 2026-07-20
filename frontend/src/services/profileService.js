@@ -38,3 +38,17 @@ export async function getProfile(username) {
         throw error;
     }
 }
+
+export function getContactDownloadUrl(username) {
+    const normalizedUsername = String(username || "")
+        .trim()
+        .toLowerCase();
+
+    if (!normalizedUsername) {
+        return "#";
+    }
+
+    return `${API_BASE_URL}/profiles/${encodeURIComponent(
+        normalizedUsername
+    )}/contact`;
+}
