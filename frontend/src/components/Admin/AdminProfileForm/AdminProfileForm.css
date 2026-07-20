@@ -1,0 +1,320 @@
+.admin-profile-form {
+    display: grid;
+    gap: 26px;
+}
+
+.admin-profile-form__header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+.admin-profile-form__back {
+    margin-bottom: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--admin-muted);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.admin-profile-form__back:hover {
+    color: var(--accent);
+}
+
+.admin-profile-form__header-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.admin-profile-form__message {
+    padding: 14px 16px;
+    border: 1px solid hsl(145 70% 45% / 0.25);
+    border-radius: var(--radius-md);
+    color: hsl(145 70% 72%);
+    background: hsl(145 70% 45% / 0.08);
+    font-size: 13px;
+}
+
+.admin-profile-form__layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(280px, 360px);
+    align-items: start;
+    gap: 20px;
+}
+
+.admin-profile-form__main,
+.admin-profile-form__side {
+    display: grid;
+    gap: 20px;
+}
+
+.admin-profile-form__side {
+    position: sticky;
+    top: calc(var(--admin-topbar-height) + 24px);
+}
+
+.admin-profile-form__section {
+    padding: 24px;
+}
+
+.admin-profile-form__section-heading {
+    margin-bottom: 24px;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+}
+
+.admin-profile-form__section-heading>span {
+    color: var(--accent);
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 0.14em;
+}
+
+.admin-profile-form__section-heading h3 {
+    color: var(--admin-heading);
+    font-size: 17px;
+}
+
+.admin-profile-form__section-heading p {
+    margin-top: 5px;
+    color: var(--admin-muted);
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.admin-profile-form__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.admin-profile-form__field {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.admin-profile-form__field--full {
+    grid-column: 1 / -1;
+}
+
+.admin-profile-form__field>span,
+.admin-profile-form__social-field>div>span {
+    color: var(--admin-text);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.admin-profile-form__field small {
+    color: var(--admin-muted);
+    font-size: 10px;
+    line-height: 1.5;
+}
+
+.admin-textarea {
+    min-height: 130px;
+    resize: vertical;
+}
+
+.admin-profile-form__username {
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--admin-border);
+    border-radius: var(--radius-md);
+    background: var(--admin-card);
+    overflow: hidden;
+}
+
+.admin-profile-form__username:focus-within {
+    border-color: var(--accent);
+    box-shadow: var(--focus-ring);
+}
+
+.admin-profile-form__username>span {
+    align-self: stretch;
+    padding-inline: 15px;
+    display: grid;
+    place-items: center;
+    border-right: 1px solid var(--admin-border);
+    color: var(--admin-muted);
+}
+
+.admin-profile-form__username input {
+    min-width: 0;
+    flex: 1;
+    padding: 0 14px;
+    border: 0;
+    outline: 0;
+    color: var(--admin-heading);
+    background: transparent;
+}
+
+.admin-profile-form__socials {
+    display: grid;
+    gap: 12px;
+}
+
+.admin-profile-form__social-field {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: center;
+    gap: 13px;
+}
+
+.admin-profile-form__social-field>div {
+    min-width: 0;
+    display: grid;
+    gap: 7px;
+}
+
+.admin-profile-form__social-icon {
+    width: 44px;
+    height: 44px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    color: var(--accent);
+    background: hsl(0 78% 52% / 0.1);
+    font-size: 16px;
+}
+
+.admin-profile-form__switch {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    cursor: pointer;
+}
+
+.admin-profile-form__switch>div {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.admin-profile-form__switch strong {
+    color: var(--admin-heading);
+    font-size: 13px;
+}
+
+.admin-profile-form__switch div span {
+    color: var(--admin-muted);
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+.admin-profile-form__switch input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.admin-profile-form__switch-control {
+    flex: 0 0 auto;
+    width: 48px;
+    height: 27px;
+    padding: 3px;
+    border-radius: var(--radius-pill);
+    background: hsl(0 0% 22%);
+    transition: background-color var(--transition-fast);
+}
+
+.admin-profile-form__switch-control::after {
+    content: "";
+    display: block;
+    width: 21px;
+    height: 21px;
+    border-radius: 50%;
+    background: hsl(0 0% 90%);
+    transition: transform var(--transition-fast);
+}
+
+.admin-profile-form__switch input:checked+.admin-profile-form__switch-control {
+    background: var(--accent);
+}
+
+.admin-profile-form__switch input:checked+.admin-profile-form__switch-control::after {
+    transform: translateX(21px);
+}
+
+.admin-profile-form__summary {
+    padding: 22px;
+    border-color: hsl(0 78% 52% / 0.22);
+    background: hsl(0 78% 52% / 0.06);
+}
+
+.admin-profile-form__summary>span {
+    color: var(--admin-muted);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.admin-profile-form__summary strong {
+    display: block;
+    margin-top: 12px;
+    overflow-wrap: anywhere;
+    color: var(--accent);
+    font-size: 20px;
+}
+
+.admin-profile-form__summary p {
+    margin-top: 9px;
+    color: var(--admin-muted);
+    font-size: 11px;
+    line-height: 1.6;
+}
+
+.admin-btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.65;
+    transform: none;
+}
+
+@media (max-width: 1050px) {
+    .admin-profile-form__layout {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-profile-form__side {
+        position: static;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .admin-profile-form__summary {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (max-width: 700px) {
+    .admin-profile-form__header {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .admin-profile-form__header-actions {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+
+    .admin-profile-form__grid,
+    .admin-profile-form__side {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-profile-form__section {
+        padding: 20px;
+    }
+
+    .admin-profile-form__summary {
+        grid-column: auto;
+    }
+}

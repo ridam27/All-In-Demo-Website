@@ -1,0 +1,109 @@
+.admin-profiles {
+    display: grid;
+    gap: 26px;
+}
+
+.admin-profiles__header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+.admin-profiles__eyebrow {
+    display: inline-block;
+    margin-bottom: 10px;
+    color: var(--accent);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.admin-profiles__toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.admin-profiles__search {
+    width: min(100%, 420px);
+    min-height: 46px;
+    padding: 0 15px;
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    border: 1px solid var(--admin-border);
+    border-radius: var(--radius-md);
+    background: var(--admin-card);
+    transition:
+        border-color var(--transition-fast),
+        box-shadow var(--transition-fast);
+}
+
+.admin-profiles__search:focus-within {
+    border-color: var(--accent);
+    box-shadow: var(--focus-ring);
+}
+
+.admin-profiles__search svg {
+    flex: 0 0 auto;
+    color: var(--admin-muted);
+    font-size: 17px;
+}
+
+.admin-profiles__search input {
+    min-width: 0;
+    flex: 1;
+    border: 0;
+    outline: 0;
+    color: var(--admin-heading);
+    background: transparent;
+}
+
+.admin-profiles__search input::placeholder {
+    color: var(--admin-muted);
+}
+
+.admin-profiles__count {
+    color: var(--admin-muted);
+    font-size: 12px;
+}
+
+@media (max-width: 640px) {
+    .admin-profiles__header {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .admin-profiles__header .admin-btn {
+        width: 100%;
+    }
+
+    .admin-profiles__toolbar {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .admin-profiles__search {
+        width: 100%;
+    }
+
+    .admin-profiles__count {
+        align-self: flex-end;
+    }
+}
+
+.admin-profiles__state {
+    padding: 36px 24px;
+    color: var(--admin-muted);
+    font-size: 13px;
+    text-align: center;
+}
+
+.admin-profiles__state--error {
+    border-color: hsl(0 78% 52% / 0.25);
+    color: hsl(0 82% 70%);
+    background: hsl(0 78% 52% / 0.07);
+}

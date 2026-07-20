@@ -12,77 +12,74 @@ import {
     FaYoutube,
 } from "react-icons/fa6";
 
-import {
-    FaEnvelope,
-    FaLink,
-} from "react-icons/fa";
+import { FaEnvelope, FaLink } from "react-icons/fa";
 
 import "./HomeShare.css";
 
 const shareItems = [
     {
         label: "Contact",
-        description: "Phone, email and WhatsApp",
+        description: "Phone, email and WhatsApp in one place.",
         icon: FaAddressCard,
     },
     {
         label: "Phone",
-        description: "Start a call instantly",
+        description: "Let visitors start a call instantly.",
         icon: FaPhone,
     },
     {
         label: "Email",
-        description: "Open a new email",
+        description: "Open a new email with one tap.",
         icon: FaEnvelope,
     },
     {
         label: "WhatsApp",
-        description: "Start a direct conversation",
+        description: "Start a direct conversation immediately.",
         icon: FaWhatsapp,
     },
     {
         label: "LinkedIn",
-        description: "Professional identity",
+        description: "Share your complete professional presence.",
         icon: FaLinkedinIn,
     },
     {
         label: "GitHub",
-        description: "Projects and source code",
+        description: "Show your projects and source code.",
         icon: FaGithub,
     },
     {
         label: "Portfolio",
-        description: "Showcase your best work",
+        description: "Present your best work without extra navigation.",
         icon: FaBriefcase,
     },
     {
         label: "Resume",
-        description: "Share your latest resume",
+        description: "Keep your latest resume one tap away.",
         icon: FaFileLines,
     },
     {
         label: "Website",
-        description: "Open your personal website",
+        description: "Send visitors directly to your website.",
         icon: FaGlobe,
     },
     {
         label: "Instagram",
-        description: "Photos and updates",
+        description: "Share your photos, updates and creative work.",
         icon: FaInstagram,
     },
     {
         label: "YouTube",
-        description: "Videos and content",
+        description: "Highlight your videos and long-form content.",
         icon: FaYoutube,
     },
     {
         label: "X",
-        description: "Posts and conversations",
+        description: "Connect visitors with your latest posts.",
         icon: FaXTwitter,
     },
     {
         label: "Custom links",
-        description: "Add anything important",
+        description: "Add any platform or resource that matters.",
         icon: FaLink,
     },
 ];
@@ -95,7 +92,7 @@ export default function HomeShare() {
         >
             <div className="home-share__background" aria-hidden="true">
                 <div className="home-share__glow" />
-                <div className="home-share__grid" />
+                <div className="home-share__line" />
             </div>
 
             <div className="home-section home-share__inner">
@@ -107,62 +104,60 @@ export default function HomeShare() {
 
                         <h2 id="home-share-title">
                             Share what matters.
-                            <span>Hide what doesn’t.</span>
+                            <span>Nothing more.</span>
                         </h2>
                     </div>
 
                     <p>
-                        Every profile adapts to the information you add. Empty fields stay
-                        hidden, so the final experience always feels clean and intentional.
+                        Your profile only shows the information you choose to add.
+                        Empty fields remain hidden, keeping every profile clean,
+                        focused and personal.
                     </p>
                 </header>
 
-                <div className="home-share__grid-list">
+                <div className="home-share__list">
                     {shareItems.map((item, index) => {
                         const Icon = item.icon;
 
                         return (
                             <article
                                 key={item.label}
-                                className="home-share__item"
-                                style={{
-                                    "--share-delay": `${index * 45}ms`,
-                                }}
+                                className="home-share__row"
                             >
-                                <div className="home-share__item-top">
-                                    <span className="home-share__icon">
-                                        <Icon aria-hidden="true" />
-                                    </span>
+                                <span className="home-share__number">
+                                    {String(index + 1).padStart(2, "0")}
+                                </span>
 
-                                    <span className="home-share__index">
-                                        {String(index + 1).padStart(2, "0")}
-                                    </span>
-                                </div>
+                                <span
+                                    className="home-share__icon"
+                                    aria-hidden="true"
+                                >
+                                    <Icon />
+                                </span>
 
-                                <div className="home-share__item-content">
+                                <div className="home-share__content">
                                     <h3>{item.label}</h3>
                                     <p>{item.description}</p>
                                 </div>
 
                                 <span
-                                    className="home-share__item-accent"
+                                    className="home-share__arrow"
                                     aria-hidden="true"
-                                />
+                                >
+                                    ↗
+                                </span>
                             </article>
                         );
                     })}
                 </div>
 
-                <div className="home-share__note">
-                    <span className="home-share__note-mark" aria-hidden="true" />
+                <div className="home-share__closing">
+                    <span className="home-share__closing-line" />
 
-                    <div>
-                        <strong>Built around your identity.</strong>
-                        <p>
-                            A student, developer, creator, freelancer or business owner can
-                            share a completely different profile using the same All In Card.
-                        </p>
-                    </div>
+                    <p>
+                        One profile can represent a student, developer, creator,
+                        freelancer, founder or business—without changing the card.
+                    </p>
                 </div>
             </div>
         </section>

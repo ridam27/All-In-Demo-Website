@@ -2,6 +2,7 @@ import cors from "cors";
 import express from "express";
 
 import profileRoutes from "./routes/profileRoutes.js";
+import adminProfileRoutes from "./routes/adminProfileRoutes.js";
 
 const app = express();
 
@@ -10,7 +11,8 @@ app.disable("x-powered-by");
 app.use(
     cors({
         origin: process.env.FRONTEND_URL,
-        methods: ["GET"],
+        methods: ["GET", "POST", "PUT", "DELETE"],
+        allowedHeaders: ["Content-Type", "Authorization"],
     })
 );
 
@@ -26,6 +28,7 @@ app.get("/api/health", (req, res) => {
 });
 
 app.use("/api/profiles", profileRoutes);
+app.use("/api/admin/profiles", adminProfileRoutes);
 
 app.use((req, res) => {
     res.status(404).json({

@@ -1,0 +1,155 @@
+/* ========= ADMIN VARIABLES ========= */
+
+:root {
+    --admin-sidebar-width: 280px;
+    --admin-topbar-height: 72px;
+
+    --admin-bg: hsl(0 0% 4%);
+    --admin-sidebar: hsl(0 0% 6%);
+    --admin-topbar: hsl(0 0% 7%);
+    --admin-card: hsl(0 0% 9%);
+    --admin-card-hover: hsl(0 0% 11%);
+
+    --admin-border: hsl(0 0% 100% / 0.07);
+
+    --admin-heading: hsl(0 0% 98%);
+    --admin-text: hsl(0 0% 82%);
+    --admin-muted: hsl(0 0% 56%);
+}
+
+/* ========= LAYOUT ========= */
+
+.admin-layout {
+    min-height: 100vh;
+    display: flex;
+    background: var(--admin-bg);
+    color: var(--admin-text);
+}
+
+.admin-main {
+    flex: 1;
+    min-width: 0;
+    margin-left: var(--admin-sidebar-width);
+    display: flex;
+    flex-direction: column;
+}
+
+.admin-content {
+    flex: 1;
+    padding: 36px;
+}
+
+/* ========= TYPOGRAPHY ========= */
+
+.admin-title {
+    color: var(--admin-heading);
+    font-size: 34px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+}
+
+.admin-subtitle {
+    margin-top: 8px;
+    color: var(--admin-muted);
+    font-size: 15px;
+}
+
+/* ========= CARDS ========= */
+
+.admin-card {
+    background: var(--admin-card);
+    border: 1px solid var(--admin-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+}
+
+/* ========= BUTTONS ========= */
+
+.admin-btn {
+    min-height: 46px;
+    padding: 0 18px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border: 0;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: transform var(--transition-fast), background var(--transition-fast);
+}
+
+.admin-btn:hover {
+    transform: translateY(-2px);
+}
+
+.admin-btn--primary {
+    color: var(--accent-text);
+    background: var(--accent);
+}
+
+.admin-btn--primary:hover {
+    background: var(--accent-hover);
+}
+
+.admin-btn--secondary {
+    color: var(--admin-text);
+    background: var(--admin-card);
+    border: 1px solid var(--admin-border);
+}
+
+/* ========= INPUTS ========= */
+
+.admin-input,
+.admin-textarea,
+.admin-select {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid var(--admin-border);
+    border-radius: var(--radius-md);
+    background: var(--admin-card);
+    color: var(--admin-heading);
+}
+
+.admin-input::placeholder,
+.admin-textarea::placeholder {
+    color: var(--admin-muted);
+}
+
+.admin-input:focus,
+.admin-textarea:focus,
+.admin-select:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: var(--focus-ring);
+}
+
+/* ========= SCROLLBAR ========= */
+
+.admin-layout ::-webkit-scrollbar {
+    width: 10px;
+}
+
+.admin-layout ::-webkit-scrollbar-track {
+    background: var(--admin-bg);
+}
+
+.admin-layout ::-webkit-scrollbar-thumb {
+    background: hsl(0 0% 20%);
+    border-radius: 999px;
+}
+
+.admin-layout ::-webkit-scrollbar-thumb:hover {
+    background: hsl(0 0% 28%);
+}
+
+/* ========= RESPONSIVE ========= */
+
+@media (max-width: 992px) {
+    .admin-main {
+        margin-left: 0;
+    }
+
+    .admin-content {
+        padding: 24px;
+    }
+}
