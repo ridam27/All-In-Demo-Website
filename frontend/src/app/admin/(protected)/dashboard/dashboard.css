@@ -192,6 +192,35 @@
     transform: translate(2px, -2px);
 }
 
+.admin-dashboard__state {
+    padding: 36px 24px;
+    color: var(--admin-muted);
+    font-size: 13px;
+    text-align: center;
+}
+
+.admin-dashboard__state--error {
+    border-color: hsl(0 78% 52% / 0.25);
+    color: hsl(0 82% 72%);
+    background: hsl(0 78% 52% / 0.07);
+}
+
+.admin-dashboard__empty {
+    padding: 44px 24px;
+    text-align: center;
+}
+
+.admin-dashboard__empty h4 {
+    color: var(--admin-heading);
+    font-size: 16px;
+}
+
+.admin-dashboard__empty p {
+    margin-top: 7px;
+    color: var(--admin-muted);
+    font-size: 12px;
+}
+
 @media (max-width: 900px) {
     .admin-dashboard__stats {
         grid-template-columns: 1fr;
@@ -226,3 +255,4 @@
         display: none;
     }
 }
+

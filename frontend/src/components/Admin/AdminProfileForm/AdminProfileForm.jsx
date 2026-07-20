@@ -3,11 +3,12 @@
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
-import { FiArrowLeft, FiEye, FiSave } from "react-icons/fi";
+import { FiArrowLeft, FiEye, FiSave, FiTrash2 } from "react-icons/fi";
 
 import {
     createAdminProfile,
     updateAdminProfile,
+    deleteAdminProfile,
 } from "@/services/adminService";
 import { SOCIAL_PLATFORMS } from "@/constants/socialPlatforms";
 
@@ -86,6 +87,7 @@ export default function AdminProfileForm({
 
     const [formData, setFormData] = useState(initialValues);
     const [isSaving, setIsSaving] = useState(false);
+    const [isDeleting, setIsDeleting] = useState(false);
     const [message, setMessage] = useState("");
 
     function updateField(event) {
@@ -167,6 +169,41 @@ export default function AdminProfileForm({
         }
     }
 
+    async function handleDelete() {
+        const username =
+            originalUsername || initialProfile?.username;
+
+        if (!username || mode !== "edit") {
+            return;
+        }
+
+        const confirmed = window.confirm(
+            `Delete @${username}? This action cannot be undone.`
+        );
+
+        if (!confirmed) {
+            return;
+        }
+
+        setIsDeleting(true);
+        setMessage("");
+
+        try {
+            await deleteAdminProfile(username);
+
+            router.replace("/admin/profiles");
+            router.refresh();
+        } catch (error) {
+            setMessage(
+                error instanceof Error
+                    ? error.message
+                    : "Unable to delete profile."
+            );
+        } finally {
+            setIsDeleting(false);
+        }
+    }
+
     return (
         <form
             className="admin-profile-form"
@@ -196,6 +233,18 @@ export default function AdminProfileForm({
                 </div>
 
                 <div className="admin-profile-form__header-actions">
+                    {mode === "edit" && (
+                        <button
+                            type="button"
+                            className="admin-btn admin-btn--danger"
+                            onClick={handleDelete}
+                            disabled={isSaving || isDeleting}
+                        >
+                            <FiTrash2 aria-hidden="true" />
+                            {isDeleting ? "Deleting..." : "Delete"}
+                        </button>
+                    )}
+
                     {mode === "edit" && formData.username && (
                         <Link
                             href={`/${encodeURIComponent(
@@ -213,7 +262,7 @@ export default function AdminProfileForm({
                     <button
                         type="submit"
                         className="admin-btn admin-btn--primary"
-                        disabled={isSaving}
+                        disabled={isSaving || isDeleting}
                     >
                         <FiSave aria-hidden="true" />
 

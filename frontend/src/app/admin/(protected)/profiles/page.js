@@ -51,7 +51,12 @@ export default function AdminProfilesPage() {
             } catch (error) {
                 if (!active) return;
 
-                setErrorMessage(error.message);
+                setErrorMessage(
+                    error instanceof Error
+                        ? error.message
+                        : "Unable to load profiles."
+                );
+
                 setStatus("error");
             }
         }
@@ -71,12 +76,23 @@ export default function AdminProfilesPage() {
         }
 
         return profiles.filter((profile) => {
+            const fullName = String(profile.fullName || "").toLowerCase();
+            const username = String(profile.username || "").toLowerCase();
+
             return (
-                profile.fullName.toLowerCase().includes(query) ||
-                profile.username.toLowerCase().includes(query)
+                fullName.includes(query) ||
+                username.includes(query)
             );
         });
     }, [profiles, search]);
+
+    function handleProfileDeleted(username) {
+        setProfiles((currentProfiles) =>
+            currentProfiles.filter(
+                (profile) => profile.username !== username
+            )
+        );
+    }
 
     return (
         <section className="admin-profiles">
@@ -89,7 +105,7 @@ export default function AdminProfilesPage() {
                     <h2 className="admin-title">Profiles</h2>
 
                     <p className="admin-subtitle">
-                        Create and manage demo NFC profiles.
+                        Create and manage NFC user profiles.
                     </p>
                 </div>
 
@@ -137,7 +153,10 @@ export default function AdminProfilesPage() {
             )}
 
             {status === "success" && (
-                <AdminProfileTable profiles={filteredProfiles} />
+                <AdminProfileTable
+                    profiles={filteredProfiles}
+                    onProfileDeleted={handleProfileDeleted}
+                />
             )}
         </section>
     );
