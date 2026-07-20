@@ -1,51 +1,8 @@
-import {
-    FaGithub,
-    FaGlobe,
-    FaInstagram,
-    FaLinkedinIn,
-    FaXTwitter,
-    FaYoutube,
-} from "react-icons/fa6";
+import { FaGlobe } from "react-icons/fa6";
+
+import { SOCIAL_PLATFORMS } from "@/constants/socialPlatforms";
 
 import "./SocialLinks.css";
-
-const PLATFORM_CONFIG = {
-    linkedin: {
-        label: "LinkedIn",
-        description: "Professional profile",
-        icon: FaLinkedinIn,
-    },
-
-    github: {
-        label: "GitHub",
-        description: "Projects and source code",
-        icon: FaGithub,
-    },
-
-    instagram: {
-        label: "Instagram",
-        description: "Photos and updates",
-        icon: FaInstagram,
-    },
-
-    x: {
-        label: "X",
-        description: "Latest posts and updates",
-        icon: FaXTwitter,
-    },
-
-    youtube: {
-        label: "YouTube",
-        description: "Videos and content",
-        icon: FaYoutube,
-    },
-
-    website: {
-        label: "Website",
-        description: "Official website",
-        icon: FaGlobe,
-    },
-};
 
 const DEFAULT_PLATFORM = {
     label: "Visit Link",
@@ -79,15 +36,18 @@ function normalizeLinks(socialLinks) {
                     link.url.trim() !== ""
                 );
             })
-            .map((link) => {
+            .map((link, index) => {
                 const platformKey = String(link.platform || "")
                     .trim()
                     .toLowerCase();
 
                 const config =
-                    PLATFORM_CONFIG[platformKey] || DEFAULT_PLATFORM;
+                    SOCIAL_PLATFORMS[platformKey] || DEFAULT_PLATFORM;
 
                 return {
+                    id:
+                        link.id ||
+                        `${platformKey || "custom"}-${link.url.trim()}-${index}`,
                     platform: platformKey || "custom",
                     url: link.url.trim(),
                     label: link.label?.trim() || config.label,
@@ -99,27 +59,31 @@ function normalizeLinks(socialLinks) {
     }
 
     /*
-      Current object format:
+      Current backend object format:
   
       {
         linkedin: "https://...",
         github: "https://...",
-        instagram: null
+        instagram: null,
+        x: "",
+        youtube: "https://...",
+        website: "https://..."
       }
     */
     if (typeof socialLinks === "object") {
         return Object.entries(socialLinks)
             .filter(([platform, url]) => {
                 return (
-                    PLATFORM_CONFIG[platform] &&
+                    SOCIAL_PLATFORMS[platform] &&
                     typeof url === "string" &&
                     url.trim() !== ""
                 );
             })
             .map(([platform, url]) => ({
+                id: platform,
                 platform,
                 url: url.trim(),
-                ...PLATFORM_CONFIG[platform],
+                ...SOCIAL_PLATFORMS[platform],
             }));
     }
 
@@ -144,12 +108,12 @@ export default function SocialLinks({ socialLinks }) {
             </div>
 
             <div className="profile-links">
-                {links.map((link, index) => {
+                {links.map((link) => {
                     const Icon = link.icon;
 
                     return (
                         <a
-                            key={`${link.platform}-${link.url}-${index}`}
+                            key={link.id}
                             href={link.url}
                             target="_blank"
                             rel="noopener noreferrer"

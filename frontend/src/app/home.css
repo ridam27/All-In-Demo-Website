@@ -1,0 +1,36 @@
+.home-page {
+    min-height: 100svh;
+    overflow: hidden;
+    background: var(--bg);
+    color: var(--text);
+}
+
+.home-section {
+    width: min(100% - 32px, 1180px);
+    margin-inline: auto;
+}
+
+.home-section__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.home-section__eyebrow::before {
+    content: "";
+    width: 24px;
+    height: 2px;
+    border-radius: var(--radius-pill);
+    background: var(--accent);
+}
+
+@media (max-width: 640px) {
+    .home-section {
+        width: min(100% - 40px, 1180px);
+    }
+}
