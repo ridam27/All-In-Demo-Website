@@ -204,6 +204,10 @@
     box-shadow: var(--shadow-xs);
 }
 
+.d_none{
+    display: none;
+}
+
 .home-hero__button--secondary:hover {
     transform: translateY(-3px);
     border-color: var(--border-strong);

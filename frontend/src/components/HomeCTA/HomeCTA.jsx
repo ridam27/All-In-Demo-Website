@@ -47,7 +47,7 @@ export default function HomeCTA() {
 
                     <Link
                         href="/admin"
-                        className="home-cta__button home-cta__button--secondary"
+                        className="d_none home-cta__button home-cta__button--secondary"
                     >
                         Admin panel
                     </Link>

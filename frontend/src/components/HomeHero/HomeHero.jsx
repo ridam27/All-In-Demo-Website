@@ -72,7 +72,7 @@ export default function HomeHero() {
 
                         <Link
                             href="/admin"
-                            className="home-hero__button home-hero__button--secondary"
+                            className="home-hero__button home-hero__button--secondary d_none"
                         >
                             Admin panel
                         </Link>
