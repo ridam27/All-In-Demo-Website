@@ -7,8 +7,11 @@ import {
     getAdminProfiles,
     updateAdminProfile,
 } from "../controllers/adminProfileController.js";
+import { requireAdmin } from "../middleware/requireAdmin.js";
 
 const router = express.Router();
+
+router.use(requireAdmin);
 
 router.get("/", getAdminProfiles);
 router.get("/:username", getAdminProfile);

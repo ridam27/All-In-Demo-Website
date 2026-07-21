@@ -164,3 +164,24 @@
     color: var(--accent-text);
     background: var(--accent);
 }
+
+.admin-auth-loading {
+    min-height: 100svh;
+    display: grid;
+    place-items: center;
+    color: var(--admin-muted);
+    background: var(--admin-bg);
+    font-size: 14px;
+}
+
+.admin-profile-page-state {
+    padding: 36px 24px;
+    color: var(--admin-muted);
+    text-align: center;
+}
+
+.admin-profile-page-state--error {
+    border-color: hsl(0 78% 52% / 0.25);
+    color: hsl(0 82% 72%);
+    background: hsl(0 78% 52% / 0.07);
+}
